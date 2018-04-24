@@ -11,17 +11,30 @@
 #include "BinaryFileHeader.h"
 #include <cstdint>
 #include <sys/types.h>
+#include <stdio.h>
+#include <cstring>
+#include <stdlib.h>
+#include <string>
+#include <fstream>
 #define MATRIX_WIDTH 4
 #define MATRIX_HEIGHT 3
 #define BOX_WIDTH 15
-#define MATRIX_NAME_STRING "Test Matrix"
+#define MATRIX_NAME_STRING "BinaryFileDisplay"
 
 using namespace std;
 
 
 int main()
 {
-
+  //before all of this I need to pull my actual data from the binary file
+  BinaryFileHeader *BinaryFile = new BinaryFileHeader();
+  ifstream binInfile ("cs3377.bin", ios::in | ios::binary);
+  binInfile.read((char *) BinaryFile, sizeof(BinaryFileHeader));
+  char* matrix11 = to_string(BinaryFile -> magicNumber);
+  char* matrix12 = (int)y(BinaryFile -> versionNumber);
+  char* matrix13 = (int)(BinaryFile -> numRecords); 
+  //const char* matrix11 = temp.c_str();
+  //char* matrix11 = temp.c_str();
   WINDOW	*window;
   CDKSCREEN	*cdkscreen;
   CDKMATRIX     *myMatrix;           // CDK Screen Matrix
@@ -69,7 +82,9 @@ int main()
   /*
    * Dipslay a message
    */
-  setCDKMatrixCell(myMatrix, 2, 2, "Test Message");
+  setCDKMatrixCell(myMatrix, 1, 1, matrix11);
+  setCDKMatrixCell(myMatrix, 1, 2, matrix12);
+  setCDKMatrixCell(myMatrix, 1, 3, matrix13);
   drawCDKMatrix(myMatrix, true);    /* required  */
 
   /* So we can see results, pause until a key is pressed. */

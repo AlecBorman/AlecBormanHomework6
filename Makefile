@@ -5,7 +5,7 @@
 #
 
 CXX = g++
-CXXFLAGS = -Wall -g -std=c++0x 
+CXXFLAGS = -Wall -g -std=c++0x -Wno-write-strings
 CPPFLAGS = -I/scratch/perkins/include
 LDFLAGS = -L/scratch/perkins/lib
 LDLIBS = -lcdk -lcurses 

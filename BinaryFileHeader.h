@@ -1,3 +1,6 @@
+
+#include <inttypes.h>
+#include <sys/types.h>
 class BinaryFileHeader
 {
  public:

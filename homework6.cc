@@ -8,8 +8,9 @@
 
 #include <iostream>
 #include "cdk.h"
-
-
+#include "BinaryFileHeader.h"
+#include <cstdint>
+#include <sys/types.h>
 #define MATRIX_WIDTH 4
 #define MATRIX_HEIGHT 3
 #define BOX_WIDTH 15

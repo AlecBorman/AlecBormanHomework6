@@ -1,6 +1,7 @@
 
 #include <inttypes.h>
 #include <sys/types.h>
+
 class BinaryFileHeader
 {
  public:
@@ -20,4 +21,5 @@ class BinaryFileRecord
  public:
   uint8_t strLength;
   char stringBuffer[maxRecordStringLength];
+
 };

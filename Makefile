@@ -1,7 +1,7 @@
 #
-# UTD CS3377 CDK Example
-# Dr. Perkins
-# stephen.perkins@utdallas.edu
+# UTD CS3377 Homework 6
+# Alec Borman
+# amb161530@utdallas.edu
 #
 
 CXX = g++

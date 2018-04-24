@@ -1,9 +1,9 @@
 /*
- * Usage of CDK Matrix
+ * Usage of homework6,cc
  *
- * File:   example1.cc
- * Author: Stephen Perkins
- * Email:  stephen.perkins@utdallas.edu
+ * 
+ * Author: Alec Borman
+ * Email:  amb161530@utdallas.edu
  */
 
 #include <iostream>

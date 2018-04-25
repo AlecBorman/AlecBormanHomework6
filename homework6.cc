@@ -18,7 +18,7 @@
 #include <fstream>
 #define MATRIX_WIDTH 3
 #define MATRIX_HEIGHT 5
-#define BOX_WIDTH 15
+#define BOX_WIDTH 16
 #define MATRIX_NAME_STRING "BinaryFileDisplay"
 
 using namespace std;
@@ -81,7 +81,7 @@ int main()
     }
 
   /* Display the Matrix */
-  drawCDKMatrix(myMatrix, true);
+  //drawCDKMatrix(myMatrix, true);
 
   /*
    * Dipslay a message
@@ -98,8 +98,8 @@ int main()
   char* numRecords = new char[BOX_WIDTH];
 
   sprintf(magicNumber, "Magic: %02X", BinaryFile->magicNumber);
-  sprintf(versionNumber, "%u", BinaryFile->versionNumber);
-  sprintf(numRecords, "%u", (unsigned)BinaryFile->numRecords);
+  sprintf(versionNumber, "Verstion: %u", BinaryFile->versionNumber);
+  sprintf(numRecords, "NumRecords: %u", (unsigned)BinaryFile->numRecords);
   setCDKMatrixCell(myMatrix, 1, 1, magicNumber);
   setCDKMatrixCell(myMatrix, 1, 2, versionNumber);
   setCDKMatrixCell(myMatrix, 1, 3, numRecords);
@@ -108,12 +108,47 @@ int main()
 
 
   BinaryFileRecord *BinaryFileR = new BinaryFileRecord();
-  binInfile.read((char *) BinaryFileR, sizeof(BinaryFileHeader));
+  binInfile.read((char *) BinaryFileR, sizeof(BinaryFileRecord));
   char* strLength = new char[BOX_WIDTH];
+  char* stringBuffer = new char[BOX_WIDTH];
   sprintf(strLength, "Strlen: %i",(int)strlen(BinaryFileR -> stringBuffer));
+  sprintf(stringBuffer, "%s", BinaryFileR -> stringBuffer);
   setCDKMatrixCell(myMatrix, 2, 1, strLength);  
+  setCDKMatrixCell(myMatrix, 2, 2, stringBuffer);
+  
+  BinaryFileR = new BinaryFileRecord();
+  binInfile.read((char *) BinaryFileR, sizeof(BinaryFileRecord));
+  strLength = new char[BOX_WIDTH];
+  stringBuffer = new char[BOX_WIDTH];
+  sprintf(strLength, "Strlen: %i",(int)strlen(BinaryFileR -> stringBuffer));
+  sprintf(stringBuffer, "%s", BinaryFileR -> stringBuffer);
+  setCDKMatrixCell(myMatrix, 3, 1, strLength);
+  setCDKMatrixCell(myMatrix, 3, 2, stringBuffer);
 
-  drawCDKMatrix(myMatrix, true);    /* required  */
+
+  BinaryFileR = new BinaryFileRecord();
+  binInfile.read((char *) BinaryFileR, sizeof(BinaryFileRecord));
+  strLength = new char[BOX_WIDTH];
+  stringBuffer = new char[BOX_WIDTH];
+  sprintf(strLength, "Strlen: %i",(int)strlen(BinaryFileR -> stringBuffer));
+  sprintf(stringBuffer, "%s", BinaryFileR -> stringBuffer);
+  setCDKMatrixCell(myMatrix, 4, 1, strLength);
+  setCDKMatrixCell(myMatrix, 4, 2, stringBuffer);
+
+  BinaryFileR = new BinaryFileRecord();
+  binInfile.read((char *) BinaryFileR, sizeof(BinaryFileRecord));
+  strLength = new char[BOX_WIDTH];
+  stringBuffer = new char[BOX_WIDTH];
+  sprintf(strLength, "Strlen: %i",(int)strlen(BinaryFileR -> stringBuffer));
+  sprintf(stringBuffer, "%s", BinaryFileR -> stringBuffer);
+  setCDKMatrixCell(myMatrix, 5, 1, strLength);
+  setCDKMatrixCell(myMatrix, 5, 2, stringBuffer);
+
+
+
+                                                                
+  drawCDKMatrix(myMatrix, true);    /* required  */ 
+
 
   /* So we can see results, pause until a key is pressed. */
   unsigned char x;
